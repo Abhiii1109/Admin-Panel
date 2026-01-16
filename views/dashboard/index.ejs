@@ -1,0 +1,110 @@
+<%- include('../layouts/header') %>
+
+<div class="admin-layout">
+  <%- include('../layouts/sidebar') %>
+  
+  <main class="main-content">
+    <!-- Statistics Cards -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-header">
+          <span class="stat-label">Total Categories</span>
+          <div class="stat-icon primary">📁</div>
+        </div>
+        <div class="stat-value"><%= stats.totalCategories %></div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-header">
+          <span class="stat-label">Total Subcategories</span>
+          <div class="stat-icon success">📂</div>
+        </div>
+        <div class="stat-value"><%= stats.totalSubcategories %></div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-header">
+          <span class="stat-label">Total Extra Categories</span>
+          <div class="stat-icon warning">📦</div>
+        </div>
+        <div class="stat-value"><%= stats.totalExtraCategories %></div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-header">
+          <span class="stat-label">Total Items</span>
+          <div class="stat-icon info">📊</div>
+        </div>
+        <div class="stat-value"><%= stats.totalCategories + stats.totalSubcategories + stats.totalExtraCategories %></div>
+      </div>
+    </div>
+    
+    <!-- Recent Activities -->
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">Recent Categories</h2>
+      </div>
+      <div class="card-body">
+        <% if (recentCategories.length > 0) { %>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Status</th>
+                  <th>Created At</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% recentCategories.forEach(category => { %>
+                  <tr>
+                    <td><%= category.name %></td>
+                    <td>
+                      <span class="badge <%= category.status === 'Active' ? 'badge-success' : 'badge-danger' %>">
+                        <%= category.status %>
+                      </span>
+                    </td>
+                    <td><%= new Date(category.createdAt).toLocaleDateString() %></td>
+                  </tr>
+                <% }) %>
+              </tbody>
+            </table>
+          </div>
+        <% } else { %>
+          <p style="text-align: center; color: var(--color-gray-500); padding: 2rem;">
+            No categories yet. <a href="/category/create" class="auth-link">Create your first category</a>
+          </p>
+        <% } %>
+      </div>
+    </div>
+    
+    <!-- Quick Links -->
+    <div class="card mt-4">
+      <div class="card-header">
+        <h2 class="card-title">Quick Actions</h2>
+      </div>
+      <div class="card-body">
+        <div class="d-flex gap-2" style="flex-wrap: wrap;">
+          <a href="/category/create" class="btn btn-primary">
+            <span>➕</span>
+            <span>Add Category</span>
+          </a>
+          <a href="/subcategory/create" class="btn btn-success">
+            <span>➕</span>
+            <span>Add Subcategory</span>
+          </a>
+          <a href="/extra-category/create" class="btn btn-secondary">
+            <span>➕</span>
+            <span>Add Extra Category</span>
+          </a>
+          <a href="/profile" class="btn btn-secondary">
+            <span>👤</span>
+            <span>View Profile</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<%- include('../layouts/footer') %>

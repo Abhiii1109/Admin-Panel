@@ -1,0 +1,74 @@
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">
+        <span>⚡</span>
+        <span>Admin Panel</span>
+      </div>
+    </div>
+    
+    <nav class="sidebar-nav">
+      <ul style="list-style: none;">
+        <li class="nav-item">
+          <a href="/dashboard" class="nav-link <%= title === 'Dashboard' ? 'active' : '' %>">
+            <span class="nav-icon">📊</span>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        
+        <li class="nav-item">
+          <a href="/category" class="nav-link <%= title === 'Categories' || title === 'Create Category' || title === 'Edit Category' ? 'active' : '' %>">
+            <span class="nav-icon">📁</span>
+            <span>Categories</span>
+          </a>
+        </li>
+        
+        <li class="nav-item">
+          <a href="/subcategory" class="nav-link <%= title === 'Subcategories' || title === 'Create Subcategory' || title === 'Edit Subcategory' ? 'active' : '' %>">
+            <span class="nav-icon">📂</span>
+            <span>Subcategories</span>
+          </a>
+        </li>
+        
+        <li class="nav-item">
+          <a href="/extra-category" class="nav-link <%= title === 'Extra Categories' || title === 'Create Extra Category' || title === 'Edit Extra Category' ? 'active' : '' %>">
+            <span class="nav-icon">📦</span>
+            <span>Extra Categories</span>
+          </a>
+        </li>
+        
+        <li class="nav-item">
+          <a href="/profile" class="nav-link <%= title === 'My Profile' || title === 'Edit Profile' || title === 'Change Password' ? 'active' : '' %>">
+            <span class="nav-icon">👤</span>
+            <span>Profile</span>
+          </a>
+        </li>
+        
+        <li class="nav-item">
+          <a href="/auth/logout" class="nav-link">
+            <span class="nav-icon">🚪</span>
+            <span>Logout</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+  
+  <header class="header">
+    <h1 class="header-title"><%= title %></h1>
+    
+    <div class="header-actions">
+      <div class="user-menu">
+        <% if (adminImage) { %>
+          <img src="<%= adminImage %>" alt="<%= adminName %>" class="user-avatar">
+        <% } else { %>
+          <div class="user-avatar">
+            <%= adminName ? adminName.charAt(0).toUpperCase() : 'A' %>
+          </div>
+        <% } %>
+        <div class="user-info">
+          <span class="user-name"><%= adminName || 'Admin' %></span>
+          <span class="user-role">Administrator</span>
+        </div>
+      </div>
+    </div>
+  </header>

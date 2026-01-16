@@ -1,0 +1,62 @@
+<%- include('../layouts/header') %>
+
+<div class="admin-layout">
+  <%- include('../layouts/sidebar') %>
+  
+  <main class="main-content">
+    <div class="card">
+      <div class="card-header d-flex justify-between align-center">
+        <h2 class="card-title">All Subcategories</h2>
+        <a href="/subcategory/create" class="btn btn-primary">
+          <span>➕</span>
+          <span>Add Subcategory</span>
+        </a>
+      </div>
+      <div class="card-body">
+        <% if (subcategories.length > 0) { %>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Category</th>
+                  <th>Created At</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% subcategories.forEach((subcategory, index) => { %>
+                  <tr>
+                    <td><%= index + 1 %></td>
+                    <td><%= subcategory.name %></td>
+                    <td>
+                      <span class="badge badge-info">
+                        <%= subcategory.categoryId ? subcategory.categoryId.name : 'N/A' %>
+                      </span>
+                    </td>
+                    <td><%= new Date(subcategory.createdAt).toLocaleDateString() %></td>
+                    <td>
+                      <div class="d-flex gap-1">
+                        <a href="/subcategory/edit/<%= subcategory._id %>" class="btn btn-sm btn-secondary">Edit</a>
+                        <form action="/subcategory/delete/<%= subcategory._id %>" method="POST" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this subcategory?')">
+                          <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                        </form>
+                      </div>
+                    </td>
+                  </tr>
+                <% }) %>
+              </tbody>
+            </table>
+          </div>
+        <% } else { %>
+          <p style="text-align: center; color: var(--color-gray-500); padding: 2rem;">
+            No subcategories found. <a href="/subcategory/create" class="auth-link">Create your first subcategory</a>
+          </p>
+        <% } %>
+      </div>
+    </div>
+  </main>
+</div>
+
+<%- include('../layouts/footer') %>

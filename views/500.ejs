@@ -1,0 +1,19 @@
+<%- include('layouts/header') %>
+
+<div class="auth-layout">
+  <div class="auth-card" style="text-align: center;">
+    <div style="font-size: 6rem; margin-bottom: 1rem;">500</div>
+    <h1 class="auth-title">Server Error</h1>
+    <p class="auth-subtitle" style="margin-bottom: 1rem;">
+      Something went wrong on our end. Please try again later.
+    </p>
+    <% if (error) { %>
+      <p style="font-size: 0.875rem; color: var(--color-gray-500); margin-bottom: 2rem;">
+        <%= error %>
+      </p>
+    <% } %>
+    <a href="/dashboard" class="btn btn-primary">Go to Dashboard</a>
+  </div>
+</div>
+
+<%- include('layouts/footer') %>
